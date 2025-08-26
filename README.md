@@ -45,7 +45,9 @@ The [README.md](https://github.com/Graylab/FLAb/tree/main/data#readme) file with
 
 The README.md file provided in each respective fitness category folder provides a description of each dataset in that folder, including size, assay units, key words associated with that file (such as "germline", "clinical stage", "nanobody", "SARS-CoV-2"), the associated publication and link, the year of the publication, and the direction of favorable (higher fitness) values. For example, the [expression README.md](https://github.com/Graylab/FLAb/tree/main/data/expression) provides a description for all the expression datasets.
 
+## Examples
 
+Examples of zero shot and few shot scoring are in the [examples directory](https://github.com/Graylab/FLAb/tree/main/examples).
 ## Install
 
 For easiest use, [create a conda environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-with-commands) for each scoring and structure prediction method:
