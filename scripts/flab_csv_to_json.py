@@ -13,6 +13,15 @@ def process_key_words(value):
     else:  # Handle missing or non-string values
         return []
 
+# Function to process the "assay" field
+def process_assay(value):
+    if isinstance(value, str) and "-log" in value:
+        return "-log(KD)"
+    elif isinstance(value, str):
+        return value
+    else:
+        return "none"
+
 # Process the data to create the "files" section
 files_data = []
 for _, row in df.iterrows():
@@ -24,7 +33,7 @@ for _, row in df.iterrows():
         assert os.path.isfile(path), f"File not found: {path}"
 
     file_entry = {
-        "assay": row['assay/units'] if isinstance(row['assay/units'], str) else "none",
+        "assay": process_assay(row['assay/units']),  # Use the new function here
         "category": row['category'] if not pd.isna(row['category']) else "none",
         "doi": row['doi'] if not pd.isna(row['doi']) else "none",
         "key_words": key_words_list if key_words_list else ["none"],
@@ -41,7 +50,7 @@ for _, row in df.iterrows():
 keys_data = {
     "assay": list(
         df['assay/units']
-        .apply(lambda x: x if isinstance(x, str) else "none")
+        .apply(lambda x: process_assay(x))  # Apply the logic to replace "-log" with "-log(KD)"
         .unique()
     ),
     "category": list(
